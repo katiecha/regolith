@@ -28,9 +28,8 @@ export default function Home() {
           </div>
 
           <p className="text-xl text-[#1A1A1A] leading-relaxed">
-            : material shaped by constant impact; fragmented,<br />
-            recombined, and refined over time into something<br />
-            stronger than its origins.
+            : material shaped by constant impact; fragmented, recombined, and
+            refined over time into something stronger than its origins.
           </p>
         </div>
       </main>
