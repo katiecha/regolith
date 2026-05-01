@@ -3,13 +3,22 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(npm test *)",
+      "Bash(pnpm *)",
       "Bash(npx prisma *)",
+      "Bash(npx vitest *)",
       "Bash(git log *)",
       "Bash(git diff *)",
-      "Bash(git status)"
+      "Bash(git status)",
+      "Bash(git add *)",
+      "Bash(git stash *)",
+      "Bash(gt *)",
+      "Bash(gh pr *)",
+      "Bash(gh issue *)"
     ],
     "deny": [
-      "Bash(rm -rf *)"
+      "Bash(rm -rf *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)"
     ]
   }
 }

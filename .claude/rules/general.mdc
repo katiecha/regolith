@@ -1,0 +1,42 @@
+---
+globs: "**/*.ts,**/*.tsx"
+alwaysApply: true
+---
+# General Rules
+
+## Core Philosophy
+- No hidden behavior or implicit coupling
+- Code lives where it is used (co-location > abstraction)
+- One component/hook per file, one clear responsibility per function
+- Prefer server components; push logic to the server
+
+## Naming Conventions
+
+| Type       | Convention       |
+| ---------- | ---------------- |
+| Files      | kebab-case       |
+| Components | PascalCase       |
+| Functions  | camelCase        |
+| Hooks      | useX             |
+| Constants  | UPPER_SNAKE_CASE |
+
+## Anti-Patterns (Hard Bans)
+- Default exports
+- Barrel files (except module boundaries)
+- `useEffect` for fetching
+- DB calls in components
+- Inline styles
+- Over-abstracted hooks
+- Global mutable state
+
+## Agent Workflow
+1. **Research** — Identify relevant files, understand patterns
+2. **Plan** — Define goal, list files, outline steps, identify risks
+3. **Implement** — Execute strictly per plan, minimal changes
+4. **Verify** — Type correctness, edge cases, no regressions
+
+## Definition of Done
+- Fully type-safe
+- No lint errors
+- No unused code
+- Tested where appropriate

@@ -1,9 +1,7 @@
 ---
-paths:
-  - "src/server/**/*.ts"
-  - "app/api/**/*.ts"
+globs: server/**/*.ts,app/api/**/*.ts
+alwaysApply: false
 ---
-
 # API Rules
 
 ## tRPC (Internal)

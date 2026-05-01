@@ -1,9 +1,7 @@
 ---
-paths:
-  - "app/**/*.tsx"
-  - "components/**/*.tsx"
+globs: app/**/*.tsx,components/**/*.tsx
+alwaysApply: false
 ---
-
 # Component Rules
 
 ## Server vs Client

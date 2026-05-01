@@ -1,0 +1,56 @@
+---
+globs: "**/*.ts,**/*.tsx"
+alwaysApply: false
+---
+
+# SOLID Principles
+
+## Single Responsibility (SRP)
+
+A unit of code should have one reason to change.
+
+- Function that fetches, transforms, AND writes → split into three
+- File with multiple unrelated functions → split by concern
+- ~80 line limit per function enforces this
+
+**Smell**: "This function also handles..."
+
+## Open/Closed (OCP)
+
+Open for extension, closed for modification.
+
+- Adding new behavior shouldn't require editing existing code
+- Use handlers/strategies instead of growing if/else chains
+
+**Smell**: Adding `if (type === 'newType')` branches to existing functions
+
+**Fix**: Register handlers, don't branch
+
+## Liskov Substitution (LSP)
+
+Subtypes must be substitutable for base types.
+
+- Less relevant in TS/React without class inheritance
+- Still applies: implementations must honor interface contracts
+
+## Interface Segregation (ISP)
+
+Don't force callers to depend on things they don't use.
+
+- Function with 10 params where caller uses 2 → accept only needed fields
+- Don't pass entire objects when you only need a few properties
+
+**Smell**: Accepting `req` or `vendorInstance` when only reading 2 fields
+
+**Fix**: Accept `{ fieldA, fieldB }` explicitly
+
+## Dependency Inversion (DIP)
+
+High-level modules shouldn't depend on low-level modules directly.
+
+- Controllers shouldn't import specific model implementations
+- Depend on interfaces/types, not concrete implementations
+
+**Smell**: `import { specificDbQuery } from './models/user'` in a controller
+
+**Fix**: Inject via interface or use service layer

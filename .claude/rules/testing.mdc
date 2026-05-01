@@ -1,10 +1,7 @@
 ---
-paths:
-  - "**/*.test.ts"
-  - "**/*.test.tsx"
-  - "**/__tests__/**"
+globs: "**/*.test.ts,**/*.test.tsx,**/__tests__/**"
+alwaysApply: false
 ---
-
 # Testing Rules
 
 - Unit tests for utilities and pure functions

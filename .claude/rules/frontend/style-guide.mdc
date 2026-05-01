@@ -1,9 +1,13 @@
+---
+globs: app/**/*.tsx,components/**/*.tsx,**/*.css
+alwaysApply: false
+---
 # Regolith — Style Guide
 
 ## Definition
 
-**Regolith**  
-*/ˈrɛɡəlɪθ/*  
+**Regolith**
+*/ˈrɛɡəlɪθ/*
 Material shaped by constant impact. Fragmented, recombined, and refined over time into something stronger than its origins.
 
 ---
@@ -19,18 +23,18 @@ It should feel closer to:
 
 —not a startup landing page.
 
-**Principle:**  
+**Principle:**
 > Ideas > interface
 
 ---
 
 ## Brand Principles
 
-- **Formed, not designed** — systems emerge through iteration and pressure  
-- **Signal from noise** — clarity is the result of refinement  
-- **Restraint** — remove until only the essential remains  
-- **Time as a material** — maturity is part of the system  
-- **Fragments → structure** — meaning is assembled, not imposed  
+- **Formed, not designed** — systems emerge through iteration and pressure
+- **Signal from noise** — clarity is the result of refinement
+- **Restraint** — remove until only the essential remains
+- **Time as a material** — maturity is part of the system
+- **Fragments → structure** — meaning is assembled, not imposed
 
 ---
 
@@ -48,3 +52,4 @@ body {
   line-height: 1.7;
   margin: 0;
 }
+```

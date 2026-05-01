@@ -27,4 +27,8 @@
 - Constants: UPPER_SNAKE_CASE
 - Hooks: useX
 
+## Scope
+- Default to localized changes; don't refactor unrelated code
+- Ask before making systemic changes that affect shared patterns
+
 See `.claude/rules/` for detailed guidelines.

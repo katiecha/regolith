@@ -1,0 +1,20 @@
+---
+globs: server/**/*.ts,prisma/**
+alwaysApply: false
+---
+# Database Rules (Prisma)
+
+## Access Patterns
+- No DB access in UI components
+- All DB logic lives in `/server/services`
+
+## Query Patterns
+- Avoid N+1 queries
+- Prefer joins/includes
+- No looped DB calls
+- Batch operations when possible
+
+## Reliability
+- All critical operations must be idempotent
+- Use transactions for multi-step operations
+- Structured logging only (no console.log)
