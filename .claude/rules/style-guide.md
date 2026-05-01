@@ -1,0 +1,50 @@
+# Regolith — Style Guide
+
+## Definition
+
+**Regolith**  
+*/ˈrɛɡəlɪθ/*  
+Material shaped by constant impact. Fragmented, recombined, and refined over time into something stronger than its origins.
+
+---
+
+## Core Aesthetic
+
+Regolith adopts a **highly restrained, editorial / essay-style design**.
+
+It should feel closer to:
+- a **personal manifesto**
+- a **research notebook**
+- a **printed essay**
+
+—not a startup landing page.
+
+**Principle:**  
+> Ideas > interface
+
+---
+
+## Brand Principles
+
+- **Formed, not designed** — systems emerge through iteration and pressure  
+- **Signal from noise** — clarity is the result of refinement  
+- **Restraint** — remove until only the essential remains  
+- **Time as a material** — maturity is part of the system  
+- **Fragments → structure** — meaning is assembled, not imposed  
+
+---
+
+## Typography
+
+Typography is the **primary design system**.
+
+### Base CSS
+
+```css
+body {
+  font-family: "EB Garamond", Georgia, serif;
+  background: #FEF9F8;
+  color: #1A1A1A;
+  line-height: 1.7;
+  margin: 0;
+}

@@ -1,0 +1,16 @@
+---
+paths:
+  - "**/*.test.ts"
+  - "**/*.test.tsx"
+  - "**/__tests__/**"
+---
+
+# Testing Rules
+
+- Unit tests for utilities and pure functions
+- Integration tests for API routes
+- Tests live next to source: `foo.ts` -> `foo.test.ts`
+- Use descriptive names: "should [expected] when [condition]"
+- Mock external dependencies, not internal modules
+- Clean up side effects in afterEach
+- No untested business logic

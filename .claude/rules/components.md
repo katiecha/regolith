@@ -1,0 +1,29 @@
+---
+paths:
+  - "app/**/*.tsx"
+  - "components/**/*.tsx"
+---
+
+# Component Rules
+
+## Server vs Client
+- Default to Server Components
+- Use `"use client"` ONLY when state, events, or browser APIs needed
+
+## Structure
+- Use function declarations
+- Named exports only, no default exports
+- Props must be typed
+- One component per file
+
+## Hooks
+- One hook per file
+- No business logic in components
+- No data fetching in components (use server components or React Query)
+- NEVER `useEffect + fetch`
+
+## Styling (Tailwind)
+- No inline styles
+- No arbitrary values (`bg-[#fff]`)
+- Use design tokens
+- Use `cn()` for merging classes
