@@ -47,7 +47,7 @@ Typography is the **primary design system**.
 ```css
 body {
   font-family: "EB Garamond", Georgia, serif;
-  background: #FEF9F8;
+  background: #FAF9F6;
   color: #1A1A1A;
   line-height: 1.7;
   margin: 0;
