@@ -56,7 +56,7 @@ export default function Home() {
       </nav>
 
       {/* Landing */}
-      <section className="min-h-screen flex items-center justify-center px-8">
+      <section className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
         <div className="max-w-xl w-full">
           <h1 className="text-3xl font-bold text-[#1A1A1A] mb-4">regolith</h1>
           <div className="flex items-center gap-4 mb-4">
@@ -71,7 +71,7 @@ export default function Home() {
       </section>
 
       {/* Thesis */}
-      <section id="thesis" className="min-h-screen flex items-center justify-center px-8">
+      <section id="thesis" className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
         <div className="max-w-xl w-full space-y-6">
           <p className="text-base text-[#1A1A1A]">
             Regolith is a research and engineering effort focused on intelligent
@@ -80,10 +80,8 @@ export default function Home() {
           <p className="text-base text-[#1A1A1A]">
             We study how materials, energy, sensing, memory, and computation can
             be combined to create infrastructure capable of operating with
-            minimal human intervention in extreme environments.
-          </p>
-          <p className="text-base text-[#1A1A1A]">
-            The Moon is the hardest test case.
+            minimal human intervention in extreme environments. The Moon is the
+            hardest test case.
           </p>
           <p className="text-base text-[#1A1A1A]">
             It is an extreme manufacturing environment defined by vacuum,
@@ -169,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* Hiring */}
-      <section id="hiring" className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
+      <section id="hiring" className="min-h-screen flex items-start justify-center px-8 pt-[30vh] pb-16 md:pb-0">
         <div className="max-w-xl w-full">
           <h2 className="text-xs uppercase tracking-widest text-[#1A1A1A] mb-8">
             Hiring
