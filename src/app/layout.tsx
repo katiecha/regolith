@@ -11,6 +11,7 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: "Regolith",
   description: "Material shaped by constant impact; fragmented, recombined, and refined over time into something stronger than its origins.",
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ebGaramond.variable} h-full antialiased`}>
+    <html lang="en" className={`${ebGaramond.variable} antialiased scroll-smooth`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
