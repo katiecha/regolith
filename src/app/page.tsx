@@ -19,9 +19,18 @@ const NAV_LINKS = [
 export default function Home() {
   return (
     <div id="top" className="bg-[#FAF9F6]">
+      {/* Moon — back to top */}
       <a href="#top" className="fixed top-8 left-8 z-20 text-xl text-[#1A1A1A]">☽</a>
 
-      <nav className="fixed top-0 left-0 z-10 flex flex-col justify-center h-full px-8 gap-6">
+      {/* X icon */}
+      <div className="fixed top-8 right-8 z-20">
+        <a href="https://x.com/RegolithAi" target="_blank" rel="noopener noreferrer">
+          <Image src="/x-logo.png" alt="X (Twitter)" width={16} height={16} />
+        </a>
+      </div>
+
+      {/* Desktop nav — vertical left side */}
+      <nav className="max-md:hidden md:flex fixed top-0 left-0 z-10 flex-col justify-center h-full px-8 gap-6">
         {NAV_LINKS.map(({ label, href }) => (
           <a
             key={label}
@@ -33,16 +42,23 @@ export default function Home() {
         ))}
       </nav>
 
-      <div className="fixed top-8 right-8 z-10">
-        <a href="https://x.com/RegolithAi" target="_blank" rel="noopener noreferrer">
-          <Image src="/x-logo.png" alt="X (Twitter)" width={16} height={16} />
-        </a>
-      </div>
+      {/* Mobile nav — horizontal bottom bar */}
+      <nav className="md:hidden flex fixed bottom-0 left-0 right-0 z-10 justify-center gap-6 px-8 py-5 bg-[#FAF9F6]">
+        {NAV_LINKS.map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            className="text-xs uppercase tracking-widest text-[#1A1A1A]"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
 
       {/* Landing */}
       <section className="min-h-screen flex items-center justify-center px-8">
         <div className="max-w-xl w-full">
-          <h1 className="text-3xl text-[#1A1A1A] mb-4">regolith</h1>
+          <h1 className="text-3xl font-bold text-[#1A1A1A] mb-4">regolith</h1>
           <div className="flex items-center gap-4 mb-4">
             <span className="text-xl text-[#1A1A1A]">reg·o·lith</span>
             <PronunciationButton />
@@ -83,12 +99,12 @@ export default function Home() {
       </section>
 
       {/* Essays */}
-      <section id="essays" className="min-h-screen flex items-center justify-center px-8">
+      <section id="essays" className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
         <div className="max-w-xl w-full">
           <h2 className="text-xs uppercase tracking-widest text-[#1A1A1A] mb-8">
             Essays
           </h2>
-          <ul className="space-y-4">
+          <ul className="space-y-8">
             {ESSAYS.map(({ title, question, href }) => (
               <li key={title} className="text-base text-[#1A1A1A]">
                 {href ? (
@@ -113,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* References */}
-      <section id="references" className="min-h-screen flex items-center justify-center px-8">
+      <section id="references" className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
         <div className="max-w-xl w-full">
           <h2 className="text-xs uppercase tracking-widest text-[#1A1A1A] mb-8">
             References
@@ -153,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* Hiring */}
-      <section id="hiring" className="min-h-screen flex items-center justify-center px-8">
+      <section id="hiring" className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0">
         <div className="max-w-xl w-full">
           <h2 className="text-xs uppercase tracking-widest text-[#1A1A1A] mb-8">
             Hiring
