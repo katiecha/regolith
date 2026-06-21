@@ -16,6 +16,7 @@ tags: [process]
 
 ## Rules
 
+
 - One concern per step
 - Each step should be independently testable
 - Dependencies between steps must be explicit
