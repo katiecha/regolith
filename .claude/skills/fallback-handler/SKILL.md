@@ -1,3 +1,9 @@
+---
+description: Handles execution failures by identifying the failure type and attempting an alternative approach
+user-invocable: false
+tags: [reliability]
+---
+
 # Fallback Handler
 
 Used when execution fails.

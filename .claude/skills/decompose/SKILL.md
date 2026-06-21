@@ -1,6 +1,7 @@
 ---
 description: Breaks down complex tasks into smaller, manageable steps. Use when task spans >3 files or has multiple concerns.
 user-invocable: false
+tags: [process]
 ---
 
 # Decomposition

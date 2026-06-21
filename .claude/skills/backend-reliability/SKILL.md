@@ -1,3 +1,9 @@
+---
+description: Rules for idempotency, retry safety, logging, and async operation handling
+user-invocable: false
+tags: [reliability]
+---
+
 # Backend Reliability
 
 ## Rules

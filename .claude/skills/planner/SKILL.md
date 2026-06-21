@@ -1,6 +1,7 @@
 ---
 description: Creates implementation plans for features and changes. Use AFTER research, BEFORE implementation. Planning == compression of intent.
 user-invocable: true
+tags: [process]
 ---
 
 # Planner

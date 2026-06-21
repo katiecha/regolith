@@ -1,3 +1,9 @@
+---
+description: Defines success criteria, edge cases, and failure modes before marking work done
+user-invocable: false
+tags: [review]
+---
+
 # Evaluation & Quality
 
 All outputs must be testable.

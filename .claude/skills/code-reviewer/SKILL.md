@@ -1,6 +1,7 @@
 ---
 description: Use BEFORE marking PR ready for review. Catches bugs human reviewers miss. Mandatory for changes touching auth, data mutations, or shared utilities.
 user-invocable: true
+tags: [review]
 ---
 
 # Code Reviewer

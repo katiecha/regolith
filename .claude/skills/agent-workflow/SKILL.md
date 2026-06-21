@@ -1,3 +1,9 @@
+---
+description: Enforces the research → plan → implement → verify loop on all tasks
+user-invocable: false
+tags: [process]
+---
+
 # Agent Workflow (RPI Loop)
 
 All tasks MUST follow this loop.

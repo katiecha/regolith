@@ -1,3 +1,9 @@
+---
+description: Enforces explicit state management with no hidden shared state or implicit mutation
+user-invocable: false
+tags: [reliability]
+---
+
 # State Management
 
 ## Rules

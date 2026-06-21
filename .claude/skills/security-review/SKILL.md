@@ -1,6 +1,7 @@
 ---
 description: Security-focused code review. Use for ANY change touching auth, user input, database queries, or external APIs. Separate from general code review.
 user-invocable: true
+tags: [review]
 ---
 
 # Security Review

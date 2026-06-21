@@ -1,6 +1,8 @@
 ---
 description: Creates a new React component following project conventions and structure
 argument-hint: <component-name>
+user-invocable: true
+tags: [scaffold]
 ---
 
 # Create Component

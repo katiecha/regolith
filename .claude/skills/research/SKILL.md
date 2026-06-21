@@ -1,6 +1,7 @@
 ---
 description: Deep codebase research before implementation. Writes compressed findings to research.md. Use for brownfield changes, unfamiliar areas, or complex features.
 user-invocable: true
+tags: [process]
 ---
 
 # Research

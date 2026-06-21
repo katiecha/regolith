@@ -1,6 +1,7 @@
 ---
 description: Gathers context before implementing a task by identifying relevant files, rules, and edge cases. Use for any non-trivial change.
 user-invocable: false
+tags: [process]
 ---
 
 # Context Gathering

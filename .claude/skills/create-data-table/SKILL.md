@@ -1,3 +1,9 @@
+---
+description: Builds a server-driven data table with filtering, sorting, and pagination
+user-invocable: true
+tags: [scaffold]
+---
+
 # Create Data Table
 
 Build server-driven data tables.

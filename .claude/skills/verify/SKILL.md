@@ -1,6 +1,7 @@
 ---
 description: Verifies claims and outputs for accuracy, distinguishing verified facts from inferences. Use after research, before implementation.
 user-invocable: false
+tags: [review]
 ---
 
 # Verification

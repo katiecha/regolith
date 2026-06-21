@@ -15,10 +15,24 @@
 
 ## Rules
 - Named exports only, no default exports
-- Server components by default, `"use client"` only when needed
+- Server components by default, `"use client"` only on leaf components that need browser APIs
 - Co-locate code where it's used
 - One component/hook per file
 - All inputs validated with Zod
+- Function declarations for components, not arrow functions
+- Semantic `key` props in `.map()` — never index-based
+
+## Accessibility
+- Semantic HTML throughout (`<section>`, `<nav>`, `<ul>`, `<li>`, etc.)
+- `lang="en"` on `<html>`
+- All `target="_blank"` links must have `rel="noopener noreferrer"`
+
+## Performance
+- `next/image` with explicit `width` and `height` always provided
+
+## Responsive
+- Mobile-first; use a single breakpoint (`md` / 768px) — avoid `sm`, `lg`, `xl`
+- Separate mobile and desktop nav layouts, not just resized versions
 
 ## Conventions
 - Files: kebab-case
