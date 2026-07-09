@@ -11,7 +11,6 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: "Regolith",
   description: "Material shaped by constant impact; fragmented, recombined, and refined over time into something stronger than its origins.",
-  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({
