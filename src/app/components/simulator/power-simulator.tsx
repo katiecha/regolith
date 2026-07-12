@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import {
   buildCycleSeries,
   clamp,
@@ -19,12 +25,30 @@ import { SimulatorControls } from "./simulator-controls";
 
 const HOURS_PER_SECOND = 8;
 
+function subscribeNever() {
+  return () => {};
+}
+
+// Math.sin can differ in its last bit(s) between the server's JS engine and
+// the browser's, which would otherwise produce a hydration mismatch on the
+// chart's computed SVG path. This is a purely client-interactive, animated
+// widget with no SEO value in its default frame, so it renders only after
+// mount rather than being server-rendered at all.
+function useIsMounted(): boolean {
+  return useSyncExternalStore(
+    subscribeNever,
+    () => true,
+    () => false
+  );
+}
+
 export function PowerSimulator() {
   const [timeHours, setTimeHours] = useState(0);
   const [collectorArea, setCollectorArea] = useState(100);
   const [efficiency, setEfficiency] = useState(0.2);
   const [storageCapacityKWh, setStorageCapacityKWh] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const mounted = useIsMounted();
 
   const lastFrameRef = useRef<number | null>(null);
 
@@ -62,6 +86,10 @@ export function PowerSimulator() {
     () => computeOxideRuntimes(series, currentHour),
     [series, currentHour]
   );
+
+  if (!mounted) {
+    return <div className="h-[600px]" />;
+  }
 
   return (
     <div className="space-y-10">
