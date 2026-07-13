@@ -29,12 +29,12 @@ export function SiteNav() {
       </nav>
 
       {/* Mobile nav — horizontal bottom bar */}
-      <nav className="md:hidden flex fixed bottom-0 left-0 right-0 z-10 justify-center gap-6 px-8 py-5 bg-background">
+      <nav className="md:hidden flex flex-wrap fixed bottom-0 left-0 right-0 z-10 justify-center gap-x-4 gap-y-1 px-4 py-3 bg-background">
         {NAV_LINKS.map(({ label, href }) => (
           <a
             key={label}
             href={href}
-            className="text-xs uppercase tracking-widest text-foreground"
+            className="text-xs uppercase tracking-wide text-foreground"
           >
             {label}
           </a>

@@ -1,20 +1,27 @@
+import Link from "next/link";
 import { ESSAYS } from "../data/content";
-import { ExternalLink } from "./ui/external-link";
 import { SectionHeading } from "./ui/section-heading";
 
 function EssayItem({
   title,
   question,
-  href,
+  slug,
 }: {
   title: string;
   question: string;
-  href?: string;
+  slug?: string;
 }) {
   return (
     <li className="text-base text-foreground">
-      {href ? (
-        <ExternalLink href={href}>{title}</ExternalLink>
+      {slug ? (
+        <Link
+          href={`/essays/${slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2"
+        >
+          {title}
+        </Link>
       ) : (
         <span>{title}</span>
       )}
@@ -32,12 +39,12 @@ export function EssaysSection() {
       <div className="max-w-xl w-full">
         <SectionHeading>Essays</SectionHeading>
         <ul className="space-y-8">
-          {ESSAYS.map(({ title, question, href }) => (
+          {ESSAYS.map(({ title, question, slug }) => (
             <EssayItem
               key={title}
               title={title}
               question={question}
-              href={href}
+              slug={slug}
             />
           ))}
         </ul>

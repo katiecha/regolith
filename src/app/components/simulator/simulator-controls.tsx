@@ -42,7 +42,7 @@ function SliderField({
         step={step}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full mt-2"
+        className="w-full mt-2 accent-accent"
       />
     </label>
   );
@@ -89,7 +89,7 @@ export function SimulatorControls({
             step={1}
             value={timeHours}
             onChange={(event) => onTimeChange(Number(event.target.value))}
-            className="w-full"
+            className="w-full accent-accent"
           />
         </div>
         <SliderField
