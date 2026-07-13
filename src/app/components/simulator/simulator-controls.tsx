@@ -72,7 +72,7 @@ export function SimulatorControls({
   onTogglePlay: () => void;
 }) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-8">
       <div className="flex items-center gap-4">
         <button
           onClick={onTogglePlay}

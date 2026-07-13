@@ -48,7 +48,7 @@ export function PowerCurveChart({
         <svg
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
-          className="w-full h-40 text-foreground"
+          className="w-full h-40 md:h-56 text-foreground"
         >
           <rect x={0} y={0} width={dayFraction} height={100} className="fill-foreground/5" />
           <rect

@@ -42,7 +42,7 @@ export function OxidePanel({ oxides }: { oxides: OxideRuntime[] }) {
   );
 
   return (
-    <ul className="space-y-5">
+    <ul className="space-y-5 md:space-y-6">
       {oxides.map((oxide) => (
         <OxideRow
           key={oxide.id}

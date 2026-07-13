@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   buildCycleSeries,
   clamp,
@@ -19,28 +13,13 @@ import {
   MIN_EFFICIENCY,
   MIN_STORAGE_CAPACITY_KWH,
 } from "../../data/simulator";
+import { useIsMounted } from "../../hooks/use-is-mounted";
+import { LunarSceneContainer } from "./lunar-scene-container";
 import { OxidePanel } from "./oxide-panel";
 import { PowerCurveChart } from "./power-curve-chart";
 import { SimulatorControls } from "./simulator-controls";
 
 const HOURS_PER_SECOND = 8;
-
-function subscribeNever() {
-  return () => {};
-}
-
-// Math.sin can differ in its last bit(s) between the server's JS engine and
-// the browser's, which would otherwise produce a hydration mismatch on the
-// chart's computed SVG path. This is a purely client-interactive, animated
-// widget with no SEO value in its default frame, so it renders only after
-// mount rather than being server-rendered at all.
-function useIsMounted(): boolean {
-  return useSyncExternalStore(
-    subscribeNever,
-    () => true,
-    () => false
-  );
-}
 
 export function PowerSimulator() {
   const [timeHours, setTimeHours] = useState(0);
@@ -51,6 +30,10 @@ export function PowerSimulator() {
   const mounted = useIsMounted();
 
   const lastFrameRef = useRef<number | null>(null);
+  // Mirrors timeHours for the 3D scene's per-frame reads, so the Canvas
+  // never re-renders React state 60x/sec — it's written on every RAF tick
+  // and on manual scrubbing, but only ever read inside useFrame.
+  const timeHoursRef = useRef(0);
 
   useEffect(() => {
     if (!isPlaying) {
@@ -63,10 +46,11 @@ export function PowerSimulator() {
     const tick = (timestamp: number) => {
       if (lastFrameRef.current !== null) {
         const deltaSeconds = (timestamp - lastFrameRef.current) / 1000;
-        setTimeHours(
-          (previous) =>
-            (previous + deltaSeconds * HOURS_PER_SECOND) % CYCLE_HOURS
-        );
+        setTimeHours((previous) => {
+          const next = (previous + deltaSeconds * HOURS_PER_SECOND) % CYCLE_HOURS;
+          timeHoursRef.current = next;
+          return next;
+        });
       }
       lastFrameRef.current = timestamp;
       frameId = requestAnimationFrame(tick);
@@ -93,7 +77,10 @@ export function PowerSimulator() {
 
   return (
     <div className="space-y-10">
-      <PowerCurveChart series={series} currentHour={timeHours} />
+      <div className="md:grid md:grid-cols-2 md:gap-10 md:items-start space-y-10 md:space-y-0">
+        <PowerCurveChart series={series} currentHour={timeHours} />
+        <LunarSceneContainer timeHoursRef={timeHoursRef} />
+      </div>
       <SimulatorControls
         timeHours={timeHours}
         collectorArea={collectorArea}
@@ -102,7 +89,9 @@ export function PowerSimulator() {
         isPlaying={isPlaying}
         onTimeChange={(value) => {
           setIsPlaying(false);
-          setTimeHours(clamp(value, 0, CYCLE_HOURS));
+          const next = clamp(value, 0, CYCLE_HOURS);
+          timeHoursRef.current = next;
+          setTimeHours(next);
         }}
         onCollectorAreaChange={(value) =>
           setCollectorArea(
