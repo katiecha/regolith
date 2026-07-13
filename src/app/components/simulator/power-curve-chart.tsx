@@ -1,5 +1,16 @@
+import { Panel } from "../ui/panel";
+import { PanelLabel } from "../ui/panel-label";
 import type { CyclePoint } from "../../data/simulator";
 import { CYCLE_HOURS, DAY_HOURS } from "../../data/simulator";
+
+// Vertical headroom (in the 0-100 viewBox unit space) so the curve's peak
+// and trough don't touch the SVG edge and clip under stroke width.
+const VERTICAL_PADDING = 8;
+
+function powerToY(powerW: number, maxPowerW: number): number {
+  const fraction = maxPowerW === 0 ? 0 : powerW / maxPowerW;
+  return VERTICAL_PADDING + (1 - fraction) * (100 - 2 * VERTICAL_PADDING);
+}
 
 function buildPath(
   series: CyclePoint[],
@@ -10,7 +21,7 @@ function buildPath(
   return series
     .map((point) => {
       const x = (point.hour / CYCLE_HOURS) * 100;
-      const y = 100 - (select(point) / maxPowerW) * 100;
+      const y = powerToY(select(point), maxPowerW);
       return `${x},${y}`;
     })
     .join(" L ");
@@ -31,14 +42,12 @@ export function PowerCurveChart({
   const currentPoint =
     series.find((p) => p.hour === Math.floor(currentHour)) ?? series[0];
   const markerX = (currentHour / CYCLE_HOURS) * 100;
-  const markerY = 100 - (currentPoint.totalPowerW / maxPowerW) * 100;
+  const markerY = powerToY(currentPoint.totalPowerW, maxPowerW);
 
   return (
-    <div>
-      <div className="flex items-baseline justify-between mb-2">
-        <span className="text-xs uppercase tracking-widest text-foreground opacity-60">
-          Power budget
-        </span>
+    <Panel>
+      <div className="flex items-baseline justify-between mb-4">
+        <PanelLabel>Power budget</PanelLabel>
         <span className="text-sm text-foreground">
           {(currentPoint.totalPowerW / 1000).toFixed(1)} kW
           <span className="opacity-60"> / {(maxPowerW / 1000).toFixed(1)} kW peak</span>
@@ -93,6 +102,6 @@ export function PowerCurveChart({
       <p className="text-xs text-foreground opacity-60 mt-2">
         Day 1 → Day {Math.round(CYCLE_HOURS / 24)}. Solid line: solar power. Dashed line: solar + battery.
       </p>
-    </div>
+    </Panel>
   );
 }

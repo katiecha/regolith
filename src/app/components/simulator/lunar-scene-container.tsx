@@ -1,6 +1,8 @@
 "use client";
 
 import { useIsMounted } from "../../hooks/use-is-mounted";
+import { Panel } from "../ui/panel";
+import { PanelLabel } from "../ui/panel-label";
 import { LunarSolarScene } from "./lunar-solar-scene";
 
 export function LunarSceneContainer({
@@ -11,17 +13,15 @@ export function LunarSceneContainer({
   const mounted = useIsMounted();
 
   return (
-    <div>
-      <span className="text-xs uppercase tracking-widest text-foreground opacity-60">
-        Lunar day/night cycle
-      </span>
-      <div className="relative w-full aspect-square md:aspect-[4/3] mt-2 border border-foreground/20">
+    <Panel>
+      <PanelLabel>Lunar day/night cycle</PanelLabel>
+      <div className="relative w-full aspect-square md:aspect-[4/3] mt-4 border border-foreground/20 overflow-hidden">
         {mounted ? (
           <LunarSolarScene timeHoursRef={timeHoursRef} />
         ) : (
           <div className="w-full h-full" />
         )}
       </div>
-    </div>
+    </Panel>
   );
 }

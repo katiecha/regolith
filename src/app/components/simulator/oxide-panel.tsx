@@ -1,4 +1,6 @@
 import type { OxideRuntime } from "../../data/simulator";
+import { Panel } from "../ui/panel";
+import { PanelLabel } from "../ui/panel-label";
 
 function OxideRow({
   oxide,
@@ -42,14 +44,17 @@ export function OxidePanel({ oxides }: { oxides: OxideRuntime[] }) {
   );
 
   return (
-    <ul className="space-y-5 md:space-y-6">
-      {oxides.map((oxide) => (
-        <OxideRow
-          key={oxide.id}
-          oxide={oxide}
-          maxThroughputKgPerHr={maxThroughputKgPerHr}
-        />
-      ))}
-    </ul>
+    <Panel>
+      <PanelLabel>Oxide throughput</PanelLabel>
+      <ul className="space-y-5 md:space-y-6 mt-4">
+        {oxides.map((oxide) => (
+          <OxideRow
+            key={oxide.id}
+            oxide={oxide}
+            maxThroughputKgPerHr={maxThroughputKgPerHr}
+          />
+        ))}
+      </ul>
+    </Panel>
   );
 }
