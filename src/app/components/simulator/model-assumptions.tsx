@@ -1,3 +1,6 @@
+import { Panel } from "../ui/panel";
+import { PanelLabel } from "../ui/panel-label";
+
 const ASSUMPTIONS = [
   "ΔH° and ΔS° values are illustrative, order-of-magnitude estimates for demonstration — not handbook-precision thermodynamic data.",
   "The solar curve is an idealized smooth day/night sinusoid: no incidence-angle losses, libration, or polar/permanently-shadowed-region effects, and a symmetric 14/14-day cycle.",
@@ -8,17 +11,15 @@ const ASSUMPTIONS = [
 
 export function ModelAssumptions() {
   return (
-    <div className="border border-foreground/20 rounded-md p-6 bg-foreground/[0.03]">
-      <p className="text-xs uppercase tracking-widest text-foreground mb-4">
-        Model assumptions
-      </p>
-      <ul className="space-y-2 list-disc pl-4">
+    <Panel>
+      <PanelLabel>Model assumptions</PanelLabel>
+      <ul className="space-y-2 list-disc pl-4 mt-4">
         {ASSUMPTIONS.map((assumption) => (
           <li key={assumption} className="text-sm text-foreground opacity-70">
             {assumption}
           </li>
         ))}
       </ul>
-    </div>
+    </Panel>
   );
 }
