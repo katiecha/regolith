@@ -14,7 +14,6 @@ import {
   MIN_STORAGE_CAPACITY_KWH,
 } from "../../data/simulator";
 import { useIsMounted } from "../../hooks/use-is-mounted";
-import { LunarSceneContainer } from "./lunar-scene-container";
 import { OxidePanel } from "./oxide-panel";
 import { PowerCurveChart } from "./power-curve-chart";
 import { SimulatorControls } from "./simulator-controls";
@@ -30,10 +29,6 @@ export function PowerSimulator() {
   const mounted = useIsMounted();
 
   const lastFrameRef = useRef<number | null>(null);
-  // Mirrors timeHours for the 3D scene's per-frame reads, so the Canvas
-  // never re-renders React state 60x/sec — it's written on every RAF tick
-  // and on manual scrubbing, but only ever read inside useFrame.
-  const timeHoursRef = useRef(0);
 
   useEffect(() => {
     if (!isPlaying) {
@@ -46,11 +41,10 @@ export function PowerSimulator() {
     const tick = (timestamp: number) => {
       if (lastFrameRef.current !== null) {
         const deltaSeconds = (timestamp - lastFrameRef.current) / 1000;
-        setTimeHours((previous) => {
-          const next = (previous + deltaSeconds * HOURS_PER_SECOND) % CYCLE_HOURS;
-          timeHoursRef.current = next;
-          return next;
-        });
+        setTimeHours(
+          (previous) =>
+            (previous + deltaSeconds * HOURS_PER_SECOND) % CYCLE_HOURS
+        );
       }
       lastFrameRef.current = timestamp;
       frameId = requestAnimationFrame(tick);
@@ -77,10 +71,7 @@ export function PowerSimulator() {
 
   return (
     <div className="space-y-10">
-      <div className="md:grid md:grid-cols-2 md:gap-10 md:items-start space-y-10 md:space-y-0">
-        <PowerCurveChart series={series} currentHour={timeHours} />
-        <LunarSceneContainer timeHoursRef={timeHoursRef} />
-      </div>
+      <PowerCurveChart series={series} currentHour={timeHours} />
       <SimulatorControls
         timeHours={timeHours}
         collectorArea={collectorArea}
@@ -89,9 +80,7 @@ export function PowerSimulator() {
         isPlaying={isPlaying}
         onTimeChange={(value) => {
           setIsPlaying(false);
-          const next = clamp(value, 0, CYCLE_HOURS);
-          timeHoursRef.current = next;
-          setTimeHours(next);
+          setTimeHours(clamp(value, 0, CYCLE_HOURS));
         }}
         onCollectorAreaChange={(value) =>
           setCollectorArea(

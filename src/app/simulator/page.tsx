@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function SimulatorPage() {
   return (
     <div className="min-h-screen px-8 py-20 bg-background">
-      <div className="max-w-4xl mx-auto w-full space-y-10">
+      <div className="max-w-2xl mx-auto w-full space-y-10">
         <Link href="/" className="text-xs uppercase tracking-widest text-foreground opacity-60">
           ← Back to Regolith
         </Link>
