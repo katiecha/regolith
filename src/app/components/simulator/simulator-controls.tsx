@@ -3,9 +3,11 @@ import {
   MAX_COLLECTOR_AREA_M2,
   MAX_EFFICIENCY,
   MAX_STORAGE_CAPACITY_KWH,
+  MAX_TEMPERATURE_K,
   MIN_COLLECTOR_AREA_M2,
   MIN_EFFICIENCY,
   MIN_STORAGE_CAPACITY_KWH,
+  MIN_TEMPERATURE_K,
 } from "../../data/simulator";
 import { Panel } from "../ui/panel";
 import { PanelLabel } from "../ui/panel-label";
@@ -53,22 +55,26 @@ export function SimulatorControls({
   collectorArea,
   efficiency,
   storageCapacityKWh,
+  temperatureK,
   isPlaying,
   onTimeChange,
   onCollectorAreaChange,
   onEfficiencyChange,
   onStorageCapacityChange,
+  onTemperatureChange,
   onTogglePlay,
 }: {
   timeHours: number;
   collectorArea: number;
   efficiency: number;
   storageCapacityKWh: number;
+  temperatureK: number;
   isPlaying: boolean;
   onTimeChange: (value: number) => void;
   onCollectorAreaChange: (value: number) => void;
   onEfficiencyChange: (value: number) => void;
   onStorageCapacityChange: (value: number) => void;
+  onTemperatureChange: (value: number) => void;
   onTogglePlay: () => void;
 }) {
   return (
@@ -118,6 +124,15 @@ export function SimulatorControls({
           max={MAX_STORAGE_CAPACITY_KWH}
           step={50}
           onChange={onStorageCapacityChange}
+        />
+        <SliderField
+          label="Process temperature"
+          value={temperatureK}
+          displayValue={`${temperatureK} K`}
+          min={MIN_TEMPERATURE_K}
+          max={MAX_TEMPERATURE_K}
+          step={25}
+          onChange={onTemperatureChange}
         />
       </div>
     </Panel>

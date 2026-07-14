@@ -19,7 +19,7 @@ const OPTIONS: ISourceOptions = {
   background: { color: { value: "transparent" } },
   fpsLimit: 60,
   particles: {
-    number: { value: 34 },
+    number: { value: 14 },
     paint: { color: { value: "#1A1A1A" } },
     opacity: { value: { min: 0.2, max: 0.6 } },
     size: { value: { min: 1, max: 4 } },
