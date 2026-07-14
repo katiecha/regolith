@@ -15,7 +15,7 @@ start() {
   fi
 
   mkdir -p .next
-  nohup npx next dev -p 0 > "$LOG_FILE" 2>&1 &
+  nohup npx next dev -p 3000 > "$LOG_FILE" 2>&1 &
   echo $! > "$PID_FILE"
   disown
 

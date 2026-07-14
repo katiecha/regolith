@@ -8,7 +8,7 @@ import type { Container, Engine, ISourceOptions } from "@tsparticles/engine";
 
 // Extra click-hit radius (in the canvas's own pixel space) so a 1-4px dot
 // is actually clickable — a target that small is otherwise unhittable.
-const HIT_PADDING = 10;
+const HIT_PADDING = 14;
 
 async function initEngine(engine: Engine): Promise<void> {
   await loadSlim(engine);
@@ -35,11 +35,7 @@ const OPTIONS: ISourceOptions = {
   },
   interactivity: {
     events: {
-      onHover: { enable: true, mode: "repulse" },
       resize: { enable: true },
-    },
-    modes: {
-      repulse: { distance: 80, duration: 0.4 },
     },
   },
   detectRetina: true,
@@ -81,7 +77,7 @@ export function RegolithDust() {
   );
 
   return (
-    <div className="absolute inset-0 overflow-hidden" onClick={handleClick}>
+    <div className="fixed inset-0 z-0 overflow-hidden" onClick={handleClick}>
       <ParticlesProvider init={initEngine}>
         <Particles
           id="regolith-dust"

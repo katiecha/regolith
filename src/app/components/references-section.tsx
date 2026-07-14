@@ -16,7 +16,7 @@ export function ReferencesSection() {
       id="references"
       className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0"
     >
-      <div className="max-w-xl w-full">
+      <div className="relative z-10 max-w-xl w-full">
         <SectionHeading>References</SectionHeading>
         <ul className="space-y-4">
           {REFERENCES.map(({ title, href }) => (

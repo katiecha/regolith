@@ -36,7 +36,7 @@ export function EssaysSection() {
       id="essays"
       className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0"
     >
-      <div className="max-w-xl w-full">
+      <div className="relative z-10 max-w-xl w-full">
         <SectionHeading>Essays</SectionHeading>
         <ul className="space-y-8">
           {ESSAYS.map(({ title, question, slug }) => (

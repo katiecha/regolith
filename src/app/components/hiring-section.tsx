@@ -6,7 +6,7 @@ export function HiringSection() {
       id="hiring"
       className="min-h-screen flex items-start justify-center px-8 pt-[30vh] pb-16 md:pb-0"
     >
-      <div className="max-w-xl w-full">
+      <div className="relative z-10 max-w-xl w-full">
         <SectionHeading>Hiring</SectionHeading>
         <div className="space-y-6">
           <p className="text-base text-foreground">

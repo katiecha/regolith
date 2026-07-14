@@ -4,7 +4,7 @@ export function ThesisSection() {
       id="thesis"
       className="min-h-screen flex items-center justify-center px-8 pb-16 md:pb-0"
     >
-      <div className="max-w-xl w-full space-y-6">
+      <div className="relative z-10 max-w-xl w-full space-y-6">
         <p className="text-base text-foreground">
           Regolith is a research and engineering effort focused on self-healing
           hardware and predictive maintenance for autonomous industry.
