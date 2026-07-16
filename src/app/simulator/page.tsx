@@ -14,8 +14,12 @@ export default function SimulatorPage() {
   return (
     <div className="min-h-screen px-8 py-20 bg-background">
       <div className="max-w-2xl mx-auto w-full space-y-10">
-        <Link href="/" className="text-xs uppercase tracking-widest text-foreground opacity-60">
-          ← Back to Regolith
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-foreground opacity-60"
+        >
+          <span aria-hidden="true">←</span>
+          Back to Regolith
         </Link>
         <div>
           <SectionHeading>Simulator</SectionHeading>

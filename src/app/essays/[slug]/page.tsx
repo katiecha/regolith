@@ -35,9 +35,10 @@ export default async function EssayPage({
       <div className="px-8 py-4">
         <Link
           href="/"
-          className="text-xs uppercase tracking-widest text-foreground opacity-60"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-foreground opacity-60"
         >
-          ← Back to Regolith
+          <span aria-hidden="true">←</span>
+          Back to Regolith
         </Link>
       </div>
       <iframe
