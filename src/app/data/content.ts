@@ -1,21 +1,27 @@
 export const NAV_LINKS = [
   { label: "Thesis", href: "#thesis" },
   { label: "Essays", href: "#essays" },
-  { label: "Simulator", href: "/simulator" },
   { label: "References", href: "#references" },
   { label: "Hiring", href: "#hiring" },
 ];
 
-export const ESSAYS: { title: string; question: string; href?: string }[] = [
+export const ESSAYS: {
+  title: string;
+  question: string;
+  slug?: string;
+  file?: string;
+}[] = [
   {
     title: "Metallurgy for a Vacuum World",
     question: "How do we transform oxides into useful materials?",
-    href: "/essays/Metallurgy_for_a_Vacuum_World.pdf",
+    slug: "metallurgy-for-a-vacuum-world",
+    file: "/essays/Metallurgy_for_a_Vacuum_World.pdf",
   },
   {
     title: "Energy for a Vacuum World",
     question: "How do we power industrial civilization?",
-    href: "/essays/Energy_for_a_Vacuum_World.pdf",
+    slug: "energy-for-a-vacuum-world",
+    file: "/essays/Energy_for_a_Vacuum_World.pdf",
   },
   { title: "Memory for a Vacuum World", question: "How do systems remember?" },
   {

@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
+    "dev:start": "./scripts/dev-server.sh start",
+    "dev:stop": "./scripts/dev-server.sh stop",
+    "dev:status": "./scripts/dev-server.sh status",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@tsparticles/engine": "^4.3.2",
+    "@tsparticles/react": "^4.3.2",
+    "@tsparticles/slim": "^4.3.2",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4"

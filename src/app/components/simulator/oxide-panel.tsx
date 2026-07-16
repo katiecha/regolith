@@ -45,7 +45,7 @@ export function OxidePanel({ oxides }: { oxides: OxideRuntime[] }) {
 
   return (
     <Panel>
-      <PanelLabel>Oxide throughput</PanelLabel>
+      <PanelLabel>Metal throughput</PanelLabel>
       <ul className="space-y-5 md:space-y-6 mt-4">
         {oxides.map((oxide) => (
           <OxideRow
@@ -55,6 +55,10 @@ export function OxidePanel({ oxides }: { oxides: OxideRuntime[] }) {
           />
         ))}
       </ul>
+      <p className="text-xs text-foreground opacity-60 mt-4">
+        All four oxides reduce simultaneously, sharing the power budget in
+        proportion to their share of the regolith feedstock.
+      </p>
     </Panel>
   );
 }
