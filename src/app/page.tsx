@@ -1,6 +1,7 @@
 import { EssaysSection } from "./components/essays-section";
 import { HiringSection } from "./components/hiring-section";
 import { LandingSection } from "./components/landing-section";
+import { LayersSection } from "./components/layers-section";
 import { ReferencesSection } from "./components/references-section";
 import { RegolithDust } from "./components/regolith-dust";
 import { ScrollToTop } from "./components/scroll-to-top";
@@ -15,6 +16,7 @@ export default function Home() {
       <SiteNav />
       <LandingSection />
       <ThesisSection />
+      <LayersSection />
       <EssaysSection />
       <ReferencesSection />
       <HiringSection />
