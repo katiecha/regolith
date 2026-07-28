@@ -1,6 +1,7 @@
 export const NAV_LINKS = [
   { label: "Thesis", href: "#thesis" },
   { label: "Layers", href: "#layers" },
+  { label: "History", href: "#history" },
   { label: "Essays", href: "#essays" },
   { label: "References", href: "#references" },
   { label: "Hiring", href: "#hiring" },
@@ -24,7 +25,10 @@ export const ESSAYS: {
     slug: "energy-for-a-vacuum-world",
     file: "/essays/Energy_for_a_Vacuum_World.pdf",
   },
-  { title: "Memory for a Vacuum World", question: "How do systems remember?" },
+  {
+    title: "Memory for Autonomous Systems",
+    question: "How do systems remember?",
+  },
   {
     title: "Trust for Autonomous Systems",
     question: "How do systems know what is true?",

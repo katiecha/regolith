@@ -77,80 +77,61 @@ export function MermaidDiagram({
     };
   }, [chart]);
 
-  // Wire hover tooltips: match each mapped block to its rendered state node (by
-  // label text, whitespace-insensitive) and reveal the equivalent question-loop
-  // block on hover.
+  // After the SVG renders, wire hover on each mapped state node: reveal the
+  // equivalent question-loop block. The tooltip is anchored above the block's
+  // center and clamped inside the wrapper so it can never overflow and shift the
+  // page. Matching is by label text (whitespace-insensitive), keeping only the
+  // outermost group per state.
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!hoverMap || !svg || !wrapper) return;
 
     const strip = (value: string | null) =>
       (value ?? "").replace(/\s+/g, "").toLowerCase();
-
     const lookup = new Map(
       Object.entries(hoverMap).map(([label, block]) => [strip(label), block])
     );
-
     const matched = Array.from(
       wrapper.querySelectorAll<SVGGElement>("g")
     ).filter((group) => lookup.has(strip(group.textContent)));
-
-    // Keep only the outermost match per state (drop nested label sub-groups).
     const nodes = matched.filter(
       (group) => !matched.some((other) => other !== group && other.contains(group))
     );
 
-    const blocks = new Map<Element, FigureBlock>();
+    const cleanups: Array<() => void> = [];
+    const hide = () => setTooltip(null);
+
     nodes.forEach((node) => {
       const block = lookup.get(strip(node.textContent));
       if (!block) return;
-      blocks.set(node, block);
       node.style.cursor = "help";
-    });
-    if (blocks.size === 0) return;
 
-    // Delegate hover on the wrapper: show the tooltip while the pointer is over
-    // a mapped block, and clear it the instant it isn't. This is robust to
-    // flicking between adjacent blocks and to leaving the diagram (unlike
-    // per-node mouseleave, which can be skipped). The tooltip is anchored above
-    // the block and clamped inside the wrapper so it can never overflow the page.
-    let currentNode: Element | null = null;
-    const nodeUnder = (target: EventTarget | null): Element | null => {
-      if (!(target instanceof Node)) return null;
-      for (const node of blocks.keys()) if (node.contains(target)) return node;
-      return null;
-    };
-    const onOver = (event: MouseEvent) => {
-      const node = nodeUnder(event.target);
-      if (node === currentNode) return;
-      currentNode = node;
-      const block = node ? blocks.get(node) : undefined;
-      if (!node || !block) {
-        setTooltip(null);
-        return;
-      }
-      const wrapperRect = wrapper.getBoundingClientRect();
-      const nodeRect = node.getBoundingClientRect();
-      const centerX = nodeRect.left - wrapperRect.left + nodeRect.width / 2;
-      const margin = 120;
-      setTooltip({
-        state: block.state,
-        note: block.note,
-        x: Math.max(margin, Math.min(centerX, wrapperRect.width - margin)),
-        y: nodeRect.top - wrapperRect.top,
+      const show = () => {
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+        const centerX = nodeRect.left - wrapperRect.left + nodeRect.width / 2;
+        const margin = 120;
+        setTooltip({
+          state: block.state,
+          note: block.note,
+          x: Math.max(margin, Math.min(centerX, wrapperRect.width - margin)),
+          y: nodeRect.top - wrapperRect.top,
+        });
+      };
+
+      node.addEventListener("mouseenter", show);
+      node.addEventListener("mouseleave", hide);
+      cleanups.push(() => {
+        node.removeEventListener("mouseenter", show);
+        node.removeEventListener("mouseleave", hide);
       });
-    };
-    const onLeave = () => {
-      currentNode = null;
-      setTooltip(null);
-    };
+    });
 
-    wrapper.addEventListener("mouseover", onOver);
-    wrapper.addEventListener("mouseleave", onLeave);
-    return () => {
-      wrapper.removeEventListener("mouseover", onOver);
-      wrapper.removeEventListener("mouseleave", onLeave);
-    };
+    // Backstop: leaving the diagram entirely always clears the tooltip.
+    wrapper.addEventListener("mouseleave", hide);
+    cleanups.push(() => wrapper.removeEventListener("mouseleave", hide));
+
+    return () => cleanups.forEach((fn) => fn());
   }, [svg, hoverMap]);
 
   if (failed) {

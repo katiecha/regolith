@@ -1,5 +1,6 @@
 import { EssaysSection } from "./components/essays-section";
 import { HiringSection } from "./components/hiring-section";
+import { HistorySection } from "./components/history-section";
 import { LandingSection } from "./components/landing-section";
 import { LayersSection } from "./components/layers-section";
 import { ReferencesSection } from "./components/references-section";
@@ -17,6 +18,7 @@ export default function Home() {
       <LandingSection />
       <ThesisSection />
       <LayersSection />
+      <HistorySection />
       <EssaysSection />
       <ReferencesSection />
       <HiringSection />

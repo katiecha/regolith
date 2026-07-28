@@ -10,8 +10,8 @@ export function HiringSection() {
         <SectionHeading>Hiring</SectionHeading>
         <div className="space-y-6">
           <p className="text-base text-foreground">
-            We are interested in people who think deeply about materials,
-            energy, computation, and autonomy.
+            We are interested in people who think deeply about data, memory,
+            control, and autonomy.
           </p>
           <p className="text-base text-foreground">
             If our essays resonate with you, reach out: katiechai21 [at] icloud

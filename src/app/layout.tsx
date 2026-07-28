@@ -10,7 +10,7 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: "Regolith",
-  description: "Material shaped by constant impact; fragmented, recombined, and refined over time into something stronger than its origins.",
+  description: "The memory layer for autonomous physical systems — machines that learn from experience, predict failures, and improve over time.",
 };
 
 export default function RootLayout({
