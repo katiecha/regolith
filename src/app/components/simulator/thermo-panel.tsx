@@ -63,7 +63,7 @@ export function ThermoPanel({
         ))}
       </ul>
       <p className="text-xs text-foreground opacity-60 mt-4">
-        ΔG &gt; 0 means reduction is non-spontaneous — electrolysis supplies the
+        ΔG &gt; 0 means reduction is non-spontaneous; electrolysis supplies the
         balance. Ordered easiest to hardest, from CRC / NIST-JANAF data with a
         constant-Cp Kirchhoff correction.
       </p>

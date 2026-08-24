@@ -1,6 +1,5 @@
 export const NAV_LINKS = [
   { label: "Thesis", href: "#thesis" },
-  { label: "Layers", href: "#layers" },
   { label: "History", href: "#history" },
   { label: "Essays", href: "#essays" },
   { label: "References", href: "#references" },

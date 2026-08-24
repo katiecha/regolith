@@ -5,7 +5,7 @@ import { PowerSimulator } from "../components/simulator/power-simulator";
 import { SectionHeading } from "../components/ui/section-heading";
 
 export const metadata: Metadata = {
-  title: "Simulator — Regolith",
+  title: "Simulator · Regolith",
   description:
     "A time-stepped lunar day/night power simulator gating oxide reduction throughput.",
 };

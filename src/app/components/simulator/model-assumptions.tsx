@@ -2,7 +2,7 @@ import { Panel } from "../ui/panel";
 import { PanelLabel } from "../ui/panel-label";
 
 const ASSUMPTIONS = [
-  "ΔH°, ΔS°, and ΔG(T) use standard 298 K formation data (CRC Handbook / NIST-JANAF) with a constant-Cp Kirchhoff correction. Phase transitions and melting enthalpies are ignored — at 1873 K several species are actually molten, so real Ellingham lines kink where these do not.",
+  "ΔH°, ΔS°, and ΔG(T) use standard 298 K formation data (CRC Handbook / NIST-JANAF) with a constant-Cp Kirchhoff correction. Phase transitions and melting enthalpies are ignored. At 1873 K several species are actually molten, so real Ellingham lines kink where these do not.",
   "FeO data are the least certain: wüstite is non-stoichiometric (≈Fe₀.₉₄₇O), so its reported enthalpy and entropy vary between sources.",
   "Energy-per-kg-metal is an empirical electrical specific energy (cell voltage, overpotential, Faradaic efficiency), intentionally decoupled from the thermal ΔG(T); the two answer different questions.",
   "The battery models a 90% round-trip efficiency, starts empty at each dawn, and does not carry its charge across the cycle wrap.",

@@ -10,7 +10,7 @@ const ebGaramond = EB_Garamond({
 
 export const metadata: Metadata = {
   title: "Regolith",
-  description: "The memory layer for autonomous physical systems — machines that learn from experience, predict failures, and improve over time.",
+  description: "The memory layer for autonomous physical systems: machines that learn from experience, predict failures, and improve over time.",
 };
 
 export default function RootLayout({

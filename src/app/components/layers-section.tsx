@@ -8,9 +8,9 @@ export function LayersSection() {
         <div className="space-y-16">
           {LAYER_FIGURES.map((figure, index) => (
             <figure key={figure.id} className="space-y-3">
-              <MermaidDiagram chart={figure.chart} hoverMap={figure.hoverMap} />
+              <MermaidDiagram chart={figure.chart} />
               <figcaption className="text-sm text-foreground opacity-60 text-center">
-                Figure {index + 1} — {figure.title}
+                Figure {index + 1}: {figure.title}
               </figcaption>
             </figure>
           ))}

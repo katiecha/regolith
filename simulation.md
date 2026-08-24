@@ -1,4 +1,4 @@
-# Regolith Power Simulator — Model, Equations & Assumptions
+# Regolith Power Simulator: Model, Equations & Assumptions
 
 A complete technical description of the lunar oxide-reduction simulator on the
 `/simulator` page. This document is the ground truth for *why the numbers are
@@ -7,7 +7,7 @@ assumption baked into the model.
 
 All logic lives in one pure-function module, **`src/app/data/simulator.ts`**;
 the React components under `src/app/components/simulator/` only render it. If
-this document and the code ever disagree, the code wins — but they were written
+this document and the code ever disagree, the code wins, but they were written
 together and cross-checked numerically (see [§11 Validation](#11-validation)).
 
 ---
@@ -36,19 +36,19 @@ together and cross-checked numerically (see [§11 Validation](#11-validation)).
 
 The thesis behind the tool: **the Moon is free-energy constrained, not resource
 constrained.** Lunar regolith is full of metal oxides (FeO, TiO₂, SiO₂, Al₂O₃,
-…). Reducing them yields structural metals *and* oxygen — but every reduction is
+…). Reducing them yields structural metals *and* oxygen, but every reduction is
 thermodynamically uphill and must be driven by electrical energy. Available
 solar power, buffered through a battery across the two-week lunar night, is
 what actually gates how much you can produce.
 
 The simulator ties three subsystems together:
 
-1. **Energy supply** — a solar array + battery over one full lunar day/night cycle.
-2. **Thermodynamics** — the temperature-dependent feasibility (ΔG) of each reduction, from real handbook data.
-3. **Mass production** — how the available power converts into kilograms of metal and oxygen per hour, and cumulatively per cycle.
+1. **Energy supply**: a solar array + battery over one full lunar day/night cycle.
+2. **Thermodynamics**: the temperature-dependent feasibility (ΔG) of each reduction, from real handbook data.
+3. **Mass production**: how the available power converts into kilograms of metal and oxygen per hour, and cumulatively per cycle.
 
 It is an **order-of-magnitude engineering model**, intended to build intuition
-and compare scenarios — not a process-design or CFD tool. See
+and compare scenarios, not a process-design or CFD tool. See
 [§12](#12-complete-list-of-assumptions--limitations) for exactly where it is
 simplified.
 
@@ -76,12 +76,12 @@ simplified.
 
 Two independent axes:
 
-- **Power/battery is temperature-independent** — `buildCycleSeries` does not take
+- **Power/battery is temperature-independent**: `buildCycleSeries` does not take
   temperature. Turning the temperature slider does **not** rebuild the power
   curve.
-- **Chemistry is temperature-dependent** — `computeOxideRuntimes` and the thermo
+- **Chemistry is temperature-dependent**: `computeOxideRuntimes` and the thermo
   functions all take `T`. (Note: temperature currently drives *feasibility and
-  the thermo readouts*, not the electrical energy cost of reduction — see
+  the thermo readouts*, not the electrical energy cost of reduction, see
   [§7.5](#75-why-energy-per-kg-is-decoupled-from-temperature).)
 
 ---
@@ -172,7 +172,7 @@ The baseload is the **lesser** of two ceilings:
 
 **(a) Energy-limited.** To hold $P_{base}$ for all 672 h, daytime supplies
 $P_{base}\,t_{day}$ directly, and the night's $P_{base}\,t_{night}$ must be
-banked first — but banking loses a round-trip factor, so you must collect
+banked first, but banking loses a round-trip factor, so you must collect
 $P_{base}\,t_{night}/\eta_{rt}$ of solar for it. Total solar energy required
 equals what's collected, $E_{solar}$:
 
@@ -203,7 +203,7 @@ instantaneous solar (nothing at night).
 > **Worked example** (defaults $A=100$, $\varepsilon=0.20$, $C=1000$ kWh):
 > $E_{solar}=5822$ kWh ⟹ $P_{energy}= 5{,}822{,}000 / (336 + 336/0.9) = 8208$ W;
 > $P_{capacity}= 0.9\times1000\times1000 / 336 = 2679$ W.
-> So $P_{base} = 2679$ W — the 1000 kWh battery is the binding constraint here.
+> So $P_{base} = 2679$ W, the 1000 kWh battery is the binding constraint here.
 
 ### 5.3 Hour-by-hour integration
 
@@ -251,7 +251,7 @@ Total process energy over the cycle is bounded by collected solar energy:
  Σ process·Δt  =  E_solar − (1−η_rt)·E_banked − η_rt·SoC_final  ≤  E_solar
 ```
 
-Verified numerically at defaults: solar 5822 kWh, process 5722 kWh — the 100 kWh
+Verified numerically at defaults: solar 5822 kWh, process 5722 kWh, the 100 kWh
 gap is exactly the round-trip loss on the ~1000 kWh cycled through the battery.
 
 ### 5.6 Behavior & known imperfections
@@ -329,7 +329,7 @@ consistency. For a reaction with coefficients $\nu$:
 ```
 
 Because metals and O₂ have ΔfH° = 0, $\Delta_rH° = -\nu_{oxide}\,\Delta_fH°_{oxide}$
-— i.e. reduction enthalpy is just the (positive) reverse of formation.
+That is, reduction enthalpy is just the (positive) reverse of formation.
 
 ### 6.4 Temperature dependence (Kirchhoff, constant-Cp)
 
@@ -364,7 +364,7 @@ Derived per-mole-O₂ standard quantities:
 | TiO₂ → Ti + O₂ | 944.0 | 185.16 | −0.62 |
 | ⅔ Al₂O₃ → 4⁄3 Al + O₂ | 1117.1 | 208.94 | +8.95 |
 
-> **Worked example — FeO at 1873 K (per mol O₂):**
+> **Worked example, FeO at 1873 K (per mol O₂):**
 > ΔrH = 544.0 + (−20.26/1000)(1873−298.15) = 544.0 − 31.9 = **512.1 kJ**
 > ΔrS = 138.21 + (−20.26)·ln(1873/298.15) = 138.21 − 37.2 = **101.0 J/K**
 > ΔrG = 512.1 − 1873·(101.0/1000) = 512.1 − 189.1 = **+323.0 kJ**
@@ -373,19 +373,19 @@ Derived per-mole-O₂ standard quantities:
 
 `rankByReducibility` sorts oxides by **ascending** ΔrG(T). Because these are
 *reduction* ΔG values, they are **positive** (reduction is non-spontaneous), and
-the least-positive one is the least stable oxide — easiest to reduce.
+the least-positive one is the least stable oxide, easiest to reduce.
 
 > ⚠️ **Sign convention pitfall.** The earlier prototype stored *formation* ΔG
 > (negative) and sorted descending. Reduction ΔG flips the sign, so the sort had
 > to flip to ascending. Both orderings happen to give the same sequence
-> (FeO → SiO₂ → TiO₂ → Al₂O₃), so a wrong sign would be visually subtle — hence
+> (FeO → SiO₂ → TiO₂ → Al₂O₃), so a wrong sign would be visually subtle, hence
 > the explicit note.
 
 ### 6.7 The Ellingham chart (sign convention)
 
 `EllinghamChart` plots **reduction ΔG per mole O₂** vs temperature. Because these
 are reduction (not formation) values, all four lines are **positive** and stay
-positive across the whole 300–2500 K range — they never cross zero. That is the
+positive across the whole 300–2500 K range, they never cross zero. That is the
 correct teaching signal: **heat alone never frees the oxygen** from these oxides;
 electrolysis supplies the remaining free energy. "Lower on the chart = easier to
 reduce," consistent with the throughput bars.
@@ -403,7 +403,7 @@ reduce," consistent with the throughput bars.
 - **Single process temperature** applied to all reactions. Real processes each
   have their own operating window and pathway.
 - ΔG here is a **thermodynamic feasibility** indicator. It is intentionally *not*
-  the same quantity as the electrical energy cost of reduction — see §7.5.
+  the same quantity as the electrical energy cost of reduction, see §7.5.
 
 ---
 
@@ -437,7 +437,7 @@ we renormalize over the four oxides: $w_i = \text{wt}\%_i / \sum \text{wt}\%$.
 ```
 
 where `energyPerKgMetal` is the empirical electrical specific energy per oxide
-(Fe 7, Ti 30, Si 45, Al 55 MJ/kg — Al's ~15 kWh/kg matches industrial
+(Fe 7, Ti 30, Si 45, Al 55 MJ/kg, Al's ~15 kWh/kg matches industrial
 Hall–Héroult).
 
 | Oxide | kg metal / kg oxide | energyPerKgMetal (MJ/kg) | ⟹ MJ / kg oxide |
@@ -471,24 +471,24 @@ $\sum_i \text{metal}_i \cdot \text{energyPerKgMetal}_i \cdot 10^6 / 3600 = P$.
 
 > **Worked example** at $P = 8200$ W: $\dot m_{reg} = 1.52$ kg/hr, giving Si 0.40,
 > Fe 0.22, Al 0.15, Ti 0.05 kg/hr of metal. Reconstructing the power from those
-> outputs returns 8200 W exactly — energy is conserved, nothing double-counted.
+> outputs returns 8200 W exactly, energy is conserved, nothing double-counted.
 
 ### 7.4 Why this replaced the old "menu" model
 
 The prototype showed each oxide *as if it received the entire power budget* (a
-menu of alternatives). Those rows could not be summed — doing so would count the
+menu of alternatives). Those rows could not be summed, doing so would count the
 power 4×. The composition-weighted model reduces everything at once, so the
 metal panel and the oxygen total are now physically additive.
 
 ### 7.5 Why energy-per-kg is decoupled from temperature
 
-`energyPerKgMetal` is an **empirical electrical** specific energy — it bundles
+`energyPerKgMetal` is an **empirical electrical** specific energy, it bundles
 cell voltage, overpotential, and Faradaic efficiency for a real reduction cell.
 That is a different quantity from the **thermal** ΔG(T) in §6. We deliberately
 keep them separate: the temperature slider changes the *thermodynamic feasibility
 story* (ΔG, Ellingham), while the *mass-throughput economics* use the fixed
 empirical energy. Coupling them (deriving energy cost from ΔG(T) plus
-overpotentials) is future work — see [§14](#14-roadmap-to-higher-fidelity).
+overpotentials) is future work, see [§14](#14-roadmap-to-higher-fidelity).
 
 ### 7.6 Assumptions
 
@@ -505,7 +505,7 @@ overpotentials) is future work — see [§14](#14-roadmap-to-higher-fidelity).
 
 ## 8. Oxygen production
 
-Oxygen is the headline ISRU product — for life support and, especially, as
+Oxygen is the headline ISRU product, for life support and, especially, as
 propellant oxidizer (the bulk of a rocket's propellant mass by weight). Every
 reduction co-produces it.
 
@@ -560,7 +560,7 @@ process-power curve and converting once.
 `PowerSimulator` (the one stateful client component) advances a simulated clock
 with `requestAnimationFrame`:
 
-- `HOURS_PER_SECOND = 8` — 8 simulated hours per real second.
+- `HOURS_PER_SECOND = 8`: 8 simulated hours per real second.
 - `timeHours` wraps modulo `CYCLE_HOURS` (672), so playback loops the cycle.
 - Dragging the time slider scrubs `timeHours` and pauses playback.
 - `currentHour = Math.floor(timeHours)` indexes the precomputed series for the
@@ -624,7 +624,7 @@ Consolidated, in roughly decreasing order of impact:
 
 **Thermodynamics**
 1. Constant Cp; **no phase-transition / fusion enthalpies** (several species are
-   molten at process temperature — real Ellingham lines kink; ours don't).
+   molten at process temperature, real Ellingham lines kink; ours don't).
 2. FeO/wüstite data are non-stoichiometric and source-dependent.
 3. A single process temperature is applied to all reactions.
 4. ΔG is a feasibility indicator, **decoupled from the electrical energy cost**
@@ -644,7 +644,7 @@ Consolidated, in roughly decreasing order of impact:
 10. Battery lossless except a 90% round-trip factor; no self-discharge, DoD
     derating, C-rate, degradation, mass, or cost.
 11. Battery starts empty each dawn; SoC not carried across the cycle wrap.
-12. Baseload is a design setpoint, not guaranteed — an undersized battery can
+12. Baseload is a design setpoint, not guaranteed, an undersized battery can
     empty before dawn.
 
 **General**

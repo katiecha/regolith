@@ -25,7 +25,7 @@ function EssayItem({
       ) : (
         <span>{title}</span>
       )}
-      <p className="text-base mt-1 text-foreground opacity-60">{question}</p>
+      <p className="text-sm mt-1 text-foreground opacity-60">{question}</p>
     </li>
   );
 }

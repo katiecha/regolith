@@ -77,7 +77,7 @@ export function MermaidDiagram({
           fontFamily: FONT_STACK,
           themeVariables: {
             fontFamily: FONT_STACK,
-            fontSize: isCompact ? "10px" : "12px",
+            fontSize: isCompact ? "13px" : "16px",
             background: paper,
             primaryColor: paper,
             primaryBorderColor: ink,
@@ -90,7 +90,12 @@ export function MermaidDiagram({
             noteTextColor: ink,
             noteBorderColor: ink,
           },
-          flowchart: { curve: "basis", useMaxWidth: true },
+          flowchart: {
+            curve: "basis",
+            useMaxWidth: true,
+            nodeSpacing: 28,
+            rankSpacing: 28,
+          },
           state: { useMaxWidth: true },
         });
 

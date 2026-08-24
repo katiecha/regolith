@@ -103,7 +103,7 @@ export function EllinghamChart({
       </div>
       <p className="text-xs text-foreground opacity-60 mt-2">
         Reduction ΔG per mole O₂ (sign-inverted Ellingham). Lower = easier;
-        every curve stays positive, so heat alone never frees the oxygen —
+        every curve stays positive, so heat alone never frees the oxygen;
         electrolysis does. Marker at {Math.round(temperatureK)} K.
       </p>
     </Panel>

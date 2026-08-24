@@ -15,7 +15,7 @@ export function BatteryMeter({
         <div className="flex items-baseline justify-between">
           <PanelLabel>Battery charge</PanelLabel>
           <span className="text-sm text-foreground opacity-60">
-            No battery — process idle at night
+            No battery: process idle at night
           </span>
         </div>
       </Panel>
